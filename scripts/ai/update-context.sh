@@ -43,7 +43,7 @@ else
   : > .ai/context/last_diff.patch
 fi
 
-git grep -nE 'TODO|FIXME|HACK|BUG' | grep -v '^scripts/ai/update-context.sh:' > .ai/context/todo_hotspots.txt 2>/dev/null || true
+git grep -nE 'TODO|FIXME|HACK|BUG' | grep -v '^scripts/ai/' > .ai/context/todo_hotspots.txt 2>/dev/null || true
 
 {
   echo "# AI Context Bundle"
@@ -81,7 +81,5 @@ git grep -nE 'TODO|FIXME|HACK|BUG' | grep -v '^scripts/ai/update-context.sh:' > 
 } > .ai/context/context_bundle.md
 
 [ -x "$ROOT/scripts/ai/write-summary.sh" ] && "$ROOT/scripts/ai/write-summary.sh" || true
-
 [ -x "$ROOT/scripts/ai/pick-important-files.sh" ] && "$ROOT/scripts/ai/pick-important-files.sh" || true
-
 [ -x "$ROOT/scripts/ai/split-context.sh" ] && "$ROOT/scripts/ai/split-context.sh" || true
