@@ -1,0 +1,6 @@
+#!/bin/sh
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
+if [ -n "$ROOT" ]; then
+  "$ROOT/scripts/ai/update-context.sh" >/dev/null 2>&1 || true
+fi
+exit 0
