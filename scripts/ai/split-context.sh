@@ -15,14 +15,24 @@ write_section () {
     echo
     echo "## Tracked Files"
     if [ -d "$DIR_PATH" ]; then
-      git ls-files "$DIR_PATH" | sed 's/^/- /' | head -100
+      TRACKED="$(git ls-files "$DIR_PATH" | head -100 || true)"
+      if [ -n "$TRACKED" ]; then
+        printf '%s\n' "$TRACKED" | sed 's/^/- /'
+      else
+        echo "- none"
+      fi
     else
       echo "- none"
     fi
     echo
     echo "## Recently Changed In This Scope"
     if [ -f .ai/context/changed_files.txt ]; then
-      grep "^$DIR_PATH" .ai/context/changed_files.txt 2>/dev/null | sed 's/^/- /' || true
+      CHANGED="$(grep "^$DIR_PATH" .ai/context/changed_files.txt 2>/dev/null || true)"
+      if [ -n "$CHANGED" ]; then
+        printf '%s\n' "$CHANGED" | sed 's/^/- /'
+      else
+        echo "- none"
+      fi
     else
       echo "- none"
     fi
@@ -33,11 +43,21 @@ write_section () {
   echo "# Context: root"
   echo
   echo "## Root Files"
-  git ls-files | awk -F/ 'NF==1 {print "- " $0}' | head -100
+  ROOT_FILES="$(git ls-files | awk -F/ 'NF==1 {print $0}' | head -100 || true)"
+  if [ -n "$ROOT_FILES" ]; then
+    printf '%s\n' "$ROOT_FILES" | sed 's/^/- /'
+  else
+    echo "- none"
+  fi
   echo
   echo "## Recently Changed Root Files"
   if [ -f .ai/context/changed_files.txt ]; then
-    awk -F/ 'NF==1 {print "- " $0}' .ai/context/changed_files.txt 2>/dev/null || true
+    ROOT_CHANGED="$(awk -F/ 'NF==1 {print $0}' .ai/context/changed_files.txt 2>/dev/null || true)"
+    if [ -n "$ROOT_CHANGED" ]; then
+      printf '%s\n' "$ROOT_CHANGED" | sed 's/^/- /'
+    else
+      echo "- none"
+    fi
   else
     echo "- none"
   fi
