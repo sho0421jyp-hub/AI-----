@@ -79,3 +79,9 @@ git grep -nE 'TODO|FIXME|HACK|BUG' | grep -v '^scripts/ai/update-context.sh:' > 
     echo "- none"
   fi
 } > .ai/context/context_bundle.md
+
+[ -x "$ROOT/scripts/ai/write-summary.sh" ] && "$ROOT/scripts/ai/write-summary.sh" || true
+
+[ -x "$ROOT/scripts/ai/pick-important-files.sh" ] && "$ROOT/scripts/ai/pick-important-files.sh" || true
+
+[ -x "$ROOT/scripts/ai/split-context.sh" ] && "$ROOT/scripts/ai/split-context.sh" || true
