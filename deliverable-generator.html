@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI業務効率化 納品物ジェネレーター</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+            background: #0f1115;
+            color: #f5f7fa;
+            line-height: 1.6;
+        }
+
+        .wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 0 0 8px;
+        }
+
+        .sub {
+            color: #9aa4b2;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: #171a21;
+            border: 1px solid #252b36;
+            border-radius: 16px;
+            padding: 18px;
+        }
+
+        .card h2 {
+            margin: 0 0 14px;
+            font-size: 18px;
+        }
+
+        label {
+            display: block;
+            margin: 12px 0 6px;
+            font-size: 13px;
+            color: #c8d1dc;
+            font-weight: 600;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            border: 1px solid #313949;
+            background: #0f131a;
+            color: #f5f7fa;
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .btns {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        button {
+            border: 0;
+            border-radius: 10px;
+            padding: 11px 14px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .primary {
+            background: #2b7fff;
+            color: white;
+        }
+
+        .secondary {
+            background: #263041;
+            color: #f5f7fa;
+        }
+
+        .danger {
+            background: #3b1f26;
+            color: #ffd9df;
+        }
+
+        .output {
+            white-space: pre-wrap;
+            min-height: 740px;
+            background: #0f131a;
+            border: 1px solid #313949;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 14px;
+            overflow: auto;
+        }
+
+        .hint {
+            margin-top: 10px;
+            color: #9aa4b2;
+            font-size: 12px;
+        }
+
+        @media (max-width: 960px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h1>AI業務効率化 納品物ジェネレーター</h1>
+        <div class="sub">ヒアリング情報を入れるだけで、納品用レポート・7日実行計画・専用プロンプト10本を生成します。</div>
+
+        <div class="grid">
+            <section class="card">
+                <h2>入力</h2>
+
+                <label>クライアント名</label>
+                <input id="clientName" placeholder="例：株式会社〇〇 / 山田様" />
+
+                <div class="row">
+                    <div>
+                        <label>業種</label>
+                        <input id="industry" placeholder="例：士業 / EC / コンサル" />
+                    </div>
+                    <div>
+                        <label>提供サービス</label>
+                        <input id="offer" placeholder="例：オンライン講座 / 顧問 / 制作代行" />
+                    </div>
+                </div>
+
+                <label>現状の主な業務（1行1業務）</label>
+                <textarea id="tasks" placeholder="問い合わせ返信
+見積作成
+請求書発行
+SNS投稿作成
+顧客情報整理"></textarea>
+
+                <label>困っていること（1行1課題）</label>
+                <textarea id="problems" placeholder="返信に時間がかかる
+資料の作成が毎回ゼロから
+タスクの抜け漏れが多い"></textarea>
+
+                <label>繰り返し発生する文章業務（1行1つ）</label>
+                <textarea id="textWork" placeholder="DM返信
+メール返信
+提案文
+FAQ回答
+リマインド連絡"></textarea>
+
+                <div class="row">
+                    <div>
+                        <label>1週間の事務作業時間（時間）</label>
+                        <input id="hoursPerWeek" type="number" value="10" />
+                    </div>
+                    <div>
+                        <label>目標削減時間（時間）</label>
+                        <input id="targetReduction" type="number" value="3" />
+                    </div>
+                </div>
+
+                <label>現在の使用ツール</label>
+                <input id="tools" placeholder="例：Gmail / Google Docs / ChatGPT / Notion" />
+
+                <label>目標</label>
+                <textarea id="goal" placeholder="例：事務作業を減らして営業時間を増やしたい"></textarea>
+
+                <label>納期・希望時期</label>
+                <input id="deadline" placeholder="例：今週中 / 7日以内" />
+
+                <div class="btns">
+                    <button class="primary" onclick="generateDeliverable()">納品物を生成</button>
+                    <button class="secondary" onclick="copyOutput()">コピー</button>
+                    <button class="secondary" onclick="downloadOutput()">Markdown保存</button>
+                    <button class="danger" onclick="resetForm()">リセット</button>
+                </div>
+
+                <div class="hint">
+                    使い方：ヒアリング内容を入力 → 「納品物を生成」 → 出力をそのまま納品 or 微修正して提出
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>出力（納品用）</h2>
+                <div id="output" class="output">ここに納品文が生成されます。</div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        function getLines(id) {
+            return document.getElementById(id).value
+                .split('\n')
+                .map(v => v.trim())
+                .filter(Boolean);
+        }
+
+        function escapeMd(text) {
+            return String(text || '').replace(/\|/g, '\\|');
+        }
+
+        function pickTopThree(tasks, problems, textWork) {
+            const merged = [...problems, ...textWork, ...tasks];
+            const unique = [...new Set(merged)];
+            return unique.slice(0, 3).length ? unique.slice(0, 3) : ['返信業務', '資料作成', '情報整理'];
+        }
+
+        function makePromptPack(clientName, industry, offer, tools, textWork, top3) {
+            const base = [
+                `あなたは${industry}向けの業務改善担当です。${clientName}の業務を前提に、曖昧表現を避けて、すぐ使える形で出力してください。`,
+                `出力は日本語、箇条書き中心、コピペ可能、不要な前置きなし。`
+            ];
+
+            const prompts = [
+                `1. 問い合わせ返信テンプレ生成\n${base.join('\n')}\n業務内容：${offer}\n使用ツール：${tools}\n目的：初回問い合わせに対する返信文を3パターン作成してください。丁寧・標準・短文の3種類で。`,
+                `2. 見積依頼返信\n${base.join('\n')}\n${clientName}向けに、見積依頼を受けた際の返信文を、必要情報の確認項目付きで作成してください。`,
+                `3. 提案文のたたき台\n${base.join('\n')}\n${offer}を提案するための営業文を、導入メリット3つ・実施の流れ・次の行動まで含めて作成してください。`,
+                `4. FAQ整備\n${base.join('\n')}\n想定されるよくある質問10個と、それぞれの簡潔な回答を作成してください。`,
+                `5. リマインド連絡文\n${base.join('\n')}\n未返信顧客に送るリマインド文を、やわらかい文面で3パターン作成してください。`,
+                `6. 打ち合わせ後の議事録要約\n${base.join('\n')}\n打ち合わせ内容を、決定事項・保留事項・次回アクションの3区分で整形してください。`,
+                `7. 作業手順書作成\n${base.join('\n')}\n対象業務：${top3[0]}\n新人でも実行できるように、手順を1〜10で作成してください。`,
+                `8. タスク整理\n${base.join('\n')}\n対象業務：${top3[1]}\n優先度A/B/Cで分類し、今日やること・今週やることに整理してください。`,
+                `9. 投稿・告知文作成\n${base.join('\n')}\n${offer}の告知文を、SNS用に100〜150字で3本作成してください。`,
+                `10. 改善案の再提案\n${base.join('\n')}\n対象業務：${top3[2]}\n現状の非効率ポイントを3つ特定し、改善策・想定削減時間・導入難易度を整理してください。`
+            ];
+
+            return prompts.join('\n\n');
+        }
+
+        function generateDeliverable() {
+            const clientName = document.getElementById('clientName').value.trim() || 'ご依頼者様';
+            const industry = document.getElementById('industry').value.trim() || '一般事業者';
+            const offer = document.getElementById('offer').value.trim() || 'サービス提供';
+            const tasks = getLines('tasks');
+            const problems = getLines('problems');
+            const textWork = getLines('textWork');
+            const hoursPerWeek = Number(document.getElementById('hoursPerWeek').value || 0);
+            const targetReduction = Number(document.getElementById('targetReduction').value || 0);
+            const tools = document.getElementById('tools').value.trim() || '未記載';
+            const goal = document.getElementById('goal').value.trim() || '事務作業の削減';
+            const deadline = document.getElementById('deadline').value.trim() || '要相談';
+
+            const top3 = pickTopThree(tasks, problems, textWork);
+            const currentMonthly = Math.max(hoursPerWeek * 4, 0);
+            const reducedMonthly = Math.max(targetReduction * 4, 0);
+
+            const report = `# AI業務効率化 初期導入診断レポート
+
+## 1. 基本情報
+- クライアント名：${escapeMd(clientName)}
+- 業種：${escapeMd(industry)}
+- 提供サービス：${escapeMd(offer)}
+- 使用ツール：${escapeMd(tools)}
+- 希望時期：${escapeMd(deadline)}
+
+## 2. 目的
+- 主要目標：${escapeMd(goal)}
+- 現状の事務作業時間（概算）：週${hoursPerWeek}時間 / 月${currentMonthly}時間
+- 目標削減時間（概算）：週${targetReduction}時間 / 月${reducedMonthly}時間
+
+## 3. 現状業務の整理
+${tasks.length ? tasks.map((v, i) => `- ${i + 1}. ${escapeMd(v)}`).join('\n') : '- 入力なし'}
+
+## 4. 主な課題
+${problems.length ? problems.map((v, i) => `- ${i + 1}. ${escapeMd(v)}`).join('\n') : '- 入力なし'}
+
+## 5. 優先してAI化すべき業務（上位3つ）
+- 優先1：${escapeMd(top3[0])}
+  - 理由：頻度が高く、短時間の繰り返しが発生しやすいため
+  - 初期対応：テンプレ化 + 生成AI下書き + コピペ運用
+- 優先2：${escapeMd(top3[1])}
+  - 理由：毎回ゼロから作る工数が発生しやすいため
+  - 初期対応：雛形化 + チェックリスト化
+- 優先3：${escapeMd(top3[2])}
+  - 理由：情報整理・抜け漏れの防止に直結するため
+  - 初期対応：入力項目固定 + 出力形式固定
+
+## 6. 7日実行プラン
+- Day1：対象業務の棚卸し（実際の作業例を3件集める）
+- Day2：頻出パターンを分類（返信・資料・整理で分ける）
+- Day3：テンプレ文を作成（よく使う文面を保存）
+- Day4：AIプロンプトを導入（下書き生成を標準化）
+- Day5：チェックリスト運用開始（品質を一定化）
+- Day6：1日分を実運用（実際の案件で試す）
+- Day7：削減時間を確認し、継続運用ルールを固定
+
+## 7. 導入ルール（初期）
+- ルール1：AIは必ず「下書き作成」に使う
+- ルール2：最終送信前に人間が確認する
+- ルール3：毎回使った文面はテンプレ保管する
+- ルール4：毎週1回、不要手順を削る
+- ルール5：同じ作業は同じ入力形式で回す
+
+## 8. 専用プロンプト10本
+${makePromptPack(clientName, industry, offer, tools, textWork, top3)}
+
+## 9. 納品後の推奨運用
+- まずは「優先1」の業務だけに限定して導入
+- 3日間で削減できた時間を記録
+- 削減できたら「優先2」に拡張
+- 1週間後に、不要な手順・使わないテンプレを削除
+
+## 10. 次回提案につなげる追加提案
+- テンプレ20本追加
+- 業務手順書の整備
+- Notion / スプレッドシートでの管理導線追加
+- 営業文 / 提案文 / FAQの一括整備
+
+---
+本レポートは初期導入用のたたき台です。実運用に合わせてテンプレと手順を微修正して固定化してください。
+`;
+
+            document.getElementById('output').textContent = report;
+        }
+
+        function copyOutput() {
+            const text = document.getElementById('output').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('コピーしました');
+            });
+        }
+
+        function downloadOutput() {
+            const text = document.getElementById('output').textContent;
+            const blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'ai-deliverable-report.md';
+            a.click();
+            URL.revokeObjectURL(a.href);
+        }
+
+        function resetForm() {
+            [
+                'clientName', 'industry', 'offer', 'tasks', 'problems',
+                'textWork', 'hoursPerWeek', 'targetReduction', 'tools',
+                'goal', 'deadline'
+            ].forEach(id => {
+                const el = document.getElementById(id);
+                if (el.type === 'number') {
+                    el.value = id === 'hoursPerWeek' ? '10' : '3';
+                } else {
+                    el.value = '';
+                }
+            });
+            document.getElementById('output').textContent = 'ここに納品文が生成されます。';
+        }
+    </script>
+</body>
+
+</html>
