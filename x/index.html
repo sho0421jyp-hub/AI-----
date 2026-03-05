@@ -1,5 +1,15 @@
 <!doctype html>
 <meta charset="utf-8">
-<meta http-equiv="refresh" content="0; url=../deliverable-generator.html?src=x">
-<script>location.replace("../deliverable-generator.html?src=x");</script>
-<p>Redirecting... <a href="../deliverable-generator.html?src=x">click</a></p>
+<title>Redirecting...</title>
+<script>
+    (() => {
+        const isGithub = location.hostname.endsWith('github.io');
+        const first = location.pathname.split('/').filter(Boolean)[0]; // GitHubの時は repo名
+        const base = isGithub ? `/${first}` : '';
+        const target = `${base}/deliverable-generator.html?src=x`;
+        location.replace(target);
+    })();
+</script>
+<noscript>
+    <p>移動できない場合：<a href="/deliverable-generator.html?src=x">診断へ</a></p>
+</noscript>
