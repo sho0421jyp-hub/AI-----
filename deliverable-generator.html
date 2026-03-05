@@ -218,13 +218,35 @@ FAQ回答
             <section class="card">
                 <h2>出力（納品用）</h2>
                 <div id="output" class="output">ここに納品文が生成されます。</div>
-                <div style="margin-top: 12px;">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvGasuglSEXBz4brWFDo6qsT1cMPlzxkvNDF0GK9xmUA-f1g/viewform?usp=dialog"
-                        target="_blank" rel="noopener noreferrer"
-                        style="display:inline-block;background:#2b7fff;color:#fff;padding:12px 16px;border-radius:10px;text-decoration:none;font-weight:700;">
-                        診断結果をもとに個別最適化を依頼する
-                    </a>
+                <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+                    <button onclick="copyResultAndOpenForm()"
+                        style="background:#2b7fff;color:#fff;padding:12px 16px;border-radius:10px;border:0;font-weight:700;cursor:pointer;">
+                        診断結果をコピーしてフォームを開く
+                    </button>
+
+                    <button onclick="copyOnly()"
+                        style="background:#263041;color:#fff;padding:12px 16px;border-radius:10px;border:0;font-weight:700;cursor:pointer;">
+                        診断結果だけコピー
+                    </button>
                 </div>
+
+                <script>
+                    const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfvGasuglSEXBz4brWFDo6qsT1cMPlzxkvNDF0GK9xmUA-f1g/viewformォームURL";
+
+                    function copyOnly() {
+                        const text = document.getElementById('output')?.textContent || '';
+                        navigator.clipboard.writeText(text).then(() => alert('診断結果をコピーしました'));
+                    }
+
+                    function copyResultAndOpenForm() {
+                        const text = document.getElementById('output')?.textContent || '';
+                        navigator.clipboard.writeText(text).then(() => {
+                            window.open(FORM_URL, '_blank', 'noopener,noreferrer');
+                            alert('診断結果をコピーしました。フォームの「診断結果」欄に貼り付けて送信してください。');
+                        });
+                    }
+                </script>
+
             </section>
         </div>
     </div>
