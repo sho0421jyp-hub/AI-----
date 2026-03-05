@@ -6,6 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI収益化プロンプトキット100選｜業務自動化×ライティング×デザイン完全版</title>
     <meta name="description" content="1日10時間AIと対話してきた専門家が厳選。業務自動化・ライティング・デザインのAIプロンプト100本を完全収録。今すぐダウンロードして収益化を加速。" />
+    <!-- セキュリティ -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://gumroad.com;" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=()" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <!-- OGP / SNS -->
+    <meta property="og:title" content="AI収益化プロンプトキット100選｜完全版" />
+    <meta property="og:description" content="業務自動化・ライティング・デザインを横断するAIプロンプト100本。コピペするだけで今日から使える実践キット。" />
+    <meta property="og:image" content="product_cover.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI収益化プロンプトキット100選" />
+    <meta name="twitter:description" content="業務自動化・ライティング・デザインのAIプロンプト100本を完全収録。" />
+    <meta name="twitter:image" content="product_cover.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -817,11 +832,11 @@
             background: rgba(255, 80, 80, 0.08);
             border: 1px solid rgba(255, 80, 80, 0.2);
             border-radius: 12px;
-            padding: 16px 24px;
+            padding: 20px 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
+            gap: 20px;
             margin-bottom: 32px;
             flex-wrap: wrap;
             text-align: center;
@@ -836,14 +851,185 @@
             flex-shrink: 0;
         }
 
-        .urgency-bar strong {
+        .urgency-label {
             color: #ff7070;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            font-weight: 700;
         }
 
-        .urgency-bar span {
-            font-size: 0.85rem;
+        .countdown-blocks {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .cd-block {
+            background: rgba(255, 80, 80, 0.15);
+            border: 1px solid rgba(255, 80, 80, 0.3);
+            border-radius: 8px;
+            padding: 6px 12px;
+            text-align: center;
+            min-width: 52px;
+        }
+
+        .cd-num {
+            font-size: 1.4rem;
+            font-weight: 900;
+            font-family: 'Inter', sans-serif;
+            color: #ff7070;
+            line-height: 1;
+            display: block;
+        }
+
+        .cd-label {
+            font-size: 0.6rem;
             color: var(--text-dim);
+            letter-spacing: 0.05em;
+        }
+
+        .cd-sep {
+            color: #ff5050;
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .urgency-bar .off-badge {
+            font-size: 0.82rem;
+            color: var(--text-dim);
+        }
+
+        /* ─── Author Section ─── */
+        .author-section {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px;
+            flex-wrap: wrap;
+        }
+
+        .author-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyan), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .author-info h3 {
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+
+        .author-info .author-title {
+            font-size: 0.82rem;
+            color: var(--cyan);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .author-info p {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            line-height: 1.8;
+        }
+
+        .author-stats {
+            display: flex;
+            gap: 24px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .author-stat strong {
+            display: block;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--gold);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .author-stat span {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        /* ─── 特商法モーダル ─── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--navy2);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-box h2 {
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin-bottom: 24px;
+            color: var(--cyan);
+        }
+
+        .modal-box table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .modal-box td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            vertical-align: top;
+        }
+
+        .modal-box td:first-child {
+            color: var(--text-dim);
+            white-space: nowrap;
+            width: 40%;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--text);
         }
     </style>
 </head>
@@ -902,7 +1088,7 @@
                 <div class="pain-icon">😫</div>
                 <div>
                     <h3>AIを使ってみたが成果につながらない</h3>
-                    <p>ChatGPTやClaudeを試したが、「なんとなく使っている」状態から抜け出せない。</p>
+                    <p>ChatGPT・Claude・Gemini・Antigravity・Manusなど試したが、「なんとなく使っている」状態から抜け出せない。</p>
                 </div>
             </div>
             <div class="pain-card">
@@ -1033,7 +1219,7 @@
             <div class="target-card">
                 <div class="target-emoji">🤖</div>
                 <h3>AIを使いこなしたい人</h3>
-                <p>ChatGPTやClaudeを持て余していて「本当に使えるプロンプト」が欲しい方</p>
+                <p>ChatGPT・Claude・Antigravity・Manusなど持て余していて「本当に使えるプロンプト」が欲しい方</p>
             </div>
             <div class="target-card">
                 <div class="target-emoji">📱</div>
@@ -1086,8 +1272,15 @@
 
         <div class="urgency-bar">
             <div class="dot"></div>
-            <strong>⏰ 本日24:00まで 特別価格 ¥9,800</strong>
-            <span>通常価格 ¥19,800 → 50% OFF</span>
+            <span class="urgency-label">⏰ 本日24:00まで 特別価格</span>
+            <div class="countdown-blocks">
+                <div class="cd-block"><span class="cd-num" id="cd-h">00</span><span class="cd-label">時間</span></div>
+                <span class="cd-sep">:</span>
+                <div class="cd-block"><span class="cd-num" id="cd-m">00</span><span class="cd-label">分</span></div>
+                <span class="cd-sep">:</span>
+                <div class="cd-block"><span class="cd-num" id="cd-s">00</span><span class="cd-label">秒</span></div>
+            </div>
+            <span class="off-badge">通常 ¥19,800 → <strong style="color:#ff7070">50% OFF ¥9,800</strong></span>
         </div>
 
         <div class="pricing-card">
@@ -1107,15 +1300,35 @@
                 <li>更新版も無料で受け取れる</li>
             </ul>
 
-            <a href="https://gumroad.com" target="_blank" rel="noopener" class="btn-buy" id="buy-btn">
+            <a href="https://gumroad.com" target="_blank" rel="noopener noreferrer" class="btn-buy" id="buy-btn">
                 📥 今すぐ購入する（¥9,800）
             </a>
             <p class="secure-note">🔒 Gumroad 安全決済 ・ クレジットカード / PayPal 対応</p>
         </div>
     </section>
 
+    <!-- Author -->
+    <section class="section" style="padding-top:0;">
+        <h2 class="section-title">制作者について<div class="line"></div>
+        </h2>
+        <div class="author-section">
+            <div class="author-avatar">🧑‍💻</div>
+            <div class="author-info">
+                <h3>Sho｜AIビジネス実践家</h3>
+                <div class="author-title">⚡ 毎日10時間以上AIと対話 ／ 年間3,000+プロンプト検証</div>
+                <p>ChatGPT・Claude・Gemini・Antigravity・Manusを使い倒し、実際の案件・副業・業務自動化で成果を出してきた実践者。「ツールを知っている」ではなく「稼ぐために使い倒している」立場から、本当に機能するプロンプトだけを厳選収録。
+                </p>
+                <div class="author-stats">
+                    <div class="author-stat"><strong>3,000+</strong><span>検証プロンプト数</span></div>
+                    <div class="author-stat"><strong>10h/日</strong><span>AI活用時間</span></div>
+                    <div class="author-stat"><strong>100本</strong><span>厳選収録</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQ -->
-    <section class="section" style="padding-top: 0;">
+    <section class="section" id="faq" style="padding-top: 0;">
         <h2 class="section-title">よくある質問<div class="line"></div>
         </h2>
         <div class="faq-list">
@@ -1125,7 +1338,8 @@
             </div>
             <div class="faq-item">
                 <div class="faq-q">どんなAIツールで使えますか？<span class="arrow">▼</span></div>
-                <div class="faq-a">ChatGPT（GPT-4）、Claude、Gemini など主要なAIチャットツール全般で動作確認済みです。特定のツールに依存しない汎用設計です。</div>
+                <div class="faq-a">ChatGPT（GPT-4o）、Claude（3.7）、Gemini（2.5）、Antigravity、Manus
+                    など主要AIツール全般で動作確認済みです。特定のツールに依存しない汎用設計のため、どのAIでもそのままお使いいただけます。</div>
             </div>
             <div class="faq-item">
                 <div class="faq-q">AI初心者でも使えますか？<span class="arrow">▼</span></div>
@@ -1152,17 +1366,59 @@
             <a href="#buy">購入する</a>
             <a href="#faq">よくある質問</a>
             <a href="mailto:hello@example.com">お問い合わせ</a>
-            <a href="#">特定商取引法に基づく表記</a>
+            <a href="#" id="tokusho-link">特定商取引法に基づく表記</a>
         </div>
         <p>© 2026 AI収益化プロンプトキット. All rights reserved.</p>
         <p style="margin-top:8px;">本商品はGumroadを通じて販売されます。</p>
     </footer>
 
+    <!-- 特定商取引法モーダル -->
+    <div class="modal-overlay" id="tokusho-modal">
+        <div class="modal-box">
+            <button class="modal-close" id="modal-close-btn" aria-label="閉じる">✕</button>
+            <h2>📋 特定商取引法に基づく表記</h2>
+            <table>
+                <tr>
+                    <td>販売者名</td>
+                    <td>Sho（個人）</td>
+                </tr>
+                <tr>
+                    <td>所在地</td>
+                    <td>請求があれば遅滞なく開示します</td>
+                </tr>
+                <tr>
+                    <td>連絡先</td>
+                    <td>hello@example.com</td>
+                </tr>
+                <tr>
+                    <td>販売価格</td>
+                    <td>¥9,800（税込）</td>
+                </tr>
+                <tr>
+                    <td>支払方法</td>
+                    <td>クレジットカード・PayPal（Gumroad経由）</td>
+                </tr>
+                <tr>
+                    <td>商品の引渡時期</td>
+                    <td>決済完了後、即時ダウンロード可能</td>
+                </tr>
+                <tr>
+                    <td>返品・返金</td>
+                    <td>デジタルコンテンツのため、原則返金不可。内容に重大な欠陥がある場合はご連絡ください。</td>
+                </tr>
+                <tr>
+                    <td>動作環境</td>
+                    <td>ブラウザ・PDFリーダーが動作する環境であればOS問わず閲覧可能</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
     <!-- Floating CTA -->
     <a href="#buy" class="float-cta" id="float-cta">📥 今すぐ購入 ¥9,800 →</a>
 
     <script>
-        // FAQ Accordion
+        // ─── FAQ アコーディオン ───
         document.querySelectorAll('.faq-q').forEach(q => {
             q.addEventListener('click', () => {
                 const item = q.parentElement;
@@ -1172,52 +1428,73 @@
             });
         });
 
-        // Floating CTA
+        // ─── フローティングCTA（IntersectionObserver） ───
         const floatCta = document.getElementById('float-cta');
         const heroCta = document.getElementById('hero-btn');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                floatCta.classList.toggle('visible', !e.isIntersecting);
-            });
+        const buyBtn = document.getElementById('buy-btn');
+        const floatObs = new IntersectionObserver(entries => {
+            floatCta.classList.toggle('visible', !entries[0].isIntersecting);
         }, { threshold: 0 });
-        observer.observe(heroCta);
+        floatObs.observe(heroCta);
+        // 購入ボタンが見えているときも非表示
+        const buyObs = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) floatCta.classList.remove('visible');
+        }, { threshold: 0.5 });
+        buyObs.observe(buyBtn);
 
-        // Scroll animations
-        const animateOnScroll = () => {
-            document.querySelectorAll('.pain-card, .content-card, .target-card, .testimonial, .prompt-item').forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.9) {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
+        // ─── スクロールアニメーション（IntersectionObserver統一） ───
+        const fadeEls = document.querySelectorAll(
+            '.pain-card, .content-card, .target-card, .testimonial, .prompt-item, .author-section'
+        );
+        fadeEls.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(28px)';
+            el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+        });
+        const fadeObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.opacity = '1';
+                    e.target.style.transform = 'translateY(0)';
+                    fadeObs.unobserve(e.target);
                 }
             });
-        };
+        }, { threshold: 0.1 });
+        fadeEls.forEach(el => fadeObs.observe(el));
 
-        document.querySelectorAll('.pain-card, .content-card, .target-card, .testimonial, .prompt-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(24px)';
-            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        });
-
-        window.addEventListener('scroll', animateOnScroll);
-        animateOnScroll();
-
-        // Countdown (reset to today midnight)
+        // ─── カウントダウンタイマー ───
+        const cdH = document.getElementById('cd-h');
+        const cdM = document.getElementById('cd-m');
+        const cdS = document.getElementById('cd-s');
         const updateTimer = () => {
             const now = new Date();
             const midnight = new Date();
             midnight.setHours(23, 59, 59, 0);
-            const diff = midnight - now;
-            if (diff <= 0) return;
-            const h = String(Math.floor(diff / 3600000)).padStart(2, '0');
-            const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
-            const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
-            const el = document.querySelector('.urgency-bar strong');
-            if (el) el.textContent = `⏰ 残り ${h}:${m}:${s} 特別価格 ¥9,800`;
+            const diff = Math.max(0, midnight - now);
+            cdH.textContent = String(Math.floor(diff / 3600000)).padStart(2, '0');
+            cdM.textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+            cdS.textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
         };
         setInterval(updateTimer, 1000);
         updateTimer();
+
+        // ─── 特定商取引法モーダル ───
+        const modal = document.getElementById('tokusho-modal');
+        document.getElementById('tokusho-link').addEventListener('click', e => {
+            e.preventDefault();
+            modal.classList.add('open');
+        });
+        document.getElementById('modal-close-btn').addEventListener('click', () => {
+            modal.classList.remove('open');
+        });
+        modal.addEventListener('click', e => {
+            if (e.target === modal) modal.classList.remove('open');
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') modal.classList.remove('open');
+        });
     </script>
+    <a href="./deliverable-generator.html">無料診断を試す</a>
 </body>
 
 </html>
