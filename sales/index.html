@@ -1,0 +1,467 @@
+index.html
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI営業自動化パック | AI Profit</title>
+    <meta name="description" content="営業人材を増やさず、リード収集・営業メール生成・CRM登録・フォロー送信を仕組み化する導入支援サービス。初期30万円、月額5万円。">
+    <meta property="og:title" content="AI営業自動化パック | AI Profit">
+    <meta property="og:description" content="営業人材を増やさず、営業作業を仕組み化。リード収集・メール生成・CRM登録・フォロー送信を導入支援。">
+    <meta property="og:type" content="website" />
+    <style>
+        :root {
+            --bg: #0f1115;
+            --card: #171a21;
+            --border: #252b36;
+            --text: #f5f7fa;
+            --muted: #9aa4b2;
+            --blue: #2b7fff;
+            --accent: #22c55e;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .wrap {
+            width: min(1100px, 92%);
+            margin: 0 auto;
+        }
+
+        .nav {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .hero {
+            padding: 72px 0 48px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.25;
+            margin: 0 0 16px;
+        }
+
+        h1 {
+            font-size: clamp(34px, 6vw, 56px);
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(24px, 4vw, 34px);
+            margin-bottom: 18px;
+        }
+
+        p {
+            margin: 0 0 16px;
+            color: var(--muted);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--blue);
+            color: #fff;
+            border-color: var(--blue);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+        }
+
+        .section {
+            padding: 56px 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 22px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .list {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--muted);
+        }
+
+        .list li {
+            margin-bottom: 10px;
+        }
+
+        .price-box {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .price {
+            font-size: 34px;
+            font-weight: 800;
+            margin: 8px 0 6px;
+        }
+
+        .small {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .video-box {
+            min-height: 220px;
+            border: 1px dashed var(--border);
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+            text-align: center;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        form {
+            display: grid;
+            gap: 14px;
+        }
+
+        label {
+            font-size: 14px;
+            color: var(--text);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            background: #0d1016;
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            font: inherit;
+        }
+
+        textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .faq-item+.faq-item {
+            margin-top: 14px;
+        }
+
+        .cta-box {
+            text-align: center;
+        }
+
+        .footer {
+            padding: 36px 0 60px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        @media (max-width: 800px) {
+
+            .grid,
+            .price-box {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 48px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="nav">
+        <div class="wrap nav-inner">
+            <a href="../index.html" class="brand">AI Profit</a>
+            <nav class="nav-links">
+                <a href="../index.html">トップ</a>
+                <a href="../kit.html">キット</a>
+                <a href="#form">無料相談</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="wrap">
+                <span class="badge">法人向け導入支援</span>
+                <h1>AI営業自動化パック</h1>
+                <p>
+                    営業人材を増やさず、営業作業を仕組み化します。<br>
+                    リード収集・営業メール生成・CRM登録・フォロー送信まで、
+                    営業の定型業務を整理して導入支援します。
+                </p>
+                <div class="hero-actions">
+                    <a href="#form" class="btn btn-primary">無料相談を申し込む</a>
+                    <a href="../kit.html" class="btn btn-secondary">個人向けキットを見る</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap">
+                <h2>こんな課題はありませんか？</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>営業が属人化している</h3>
+                        <p>担当者によって対応品質がバラつき、仕組みとして回っていない状態。</p>
+                    </div>
+                    <div class="card">
+                        <h3>リスト作成に時間がかかる</h3>
+                        <p>見込み顧客探しだけで時間が消え、提案や商談に集中できない状態。</p>
+                    </div>
+                    <div class="card">
+                        <h3>メール作成が重い</h3>
+                        <p>毎回ゼロから文面を作り、送るまでに時間がかかっている状態。</p>
+                    </div>
+                    <div class="card">
+                        <h3>フォロー漏れが多い</h3>
+                        <p>一度接点を持った見込み客を追い切れず、機会損失が出ている状態。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap">
+                <h2>AI営業自動化パックでできること</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>1. リード収集</h3>
+                        <p>営業先候補の整理・抽出の流れを整え、手作業の負担を減らします。</p>
+                    </div>
+                    <div class="card">
+                        <h3>2. 営業メール生成</h3>
+                        <p>提案内容に合わせて、初回メールやフォロー文を作りやすくします。</p>
+                    </div>
+                    <div class="card">
+                        <h3>3. CRM登録</h3>
+                        <p>顧客情報や対応履歴を記録しやすい運用に整理します。</p>
+                    </div>
+                    <div class="card">
+                        <h3>4. フォロー送信</h3>
+                        <p>再送や追客の抜け漏れを減らし、営業の継続接触をしやすくします。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap">
+                <h2>導入メリット</h2>
+                <div class="card">
+                    <ul class="list">
+                        <li>営業担当を増やさずに、営業作業の量を増やしやすくなる</li>
+                        <li>提案前の作業を減らし、商談やクロージングに集中しやすくなる</li>
+                        <li>顧客情報・送信履歴・対応状況を整理しやすくなる</li>
+                        <li>フォロー漏れを防ぎ、商談化の取りこぼしを減らしやすくなる</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap">
+                <h2>料金</h2>
+                <div class="price-box">
+                    <div class="card">
+                        <h3>初期導入</h3>
+                        <div class="price">30万円</div>
+                        <p class="small">設計・導線整理・初期構築・設定サポート</p>
+                    </div>
+                    <div class="card">
+                        <h3>月額運用</h3>
+                        <div class="price">5万円</div>
+                        <p class="small">運用改善・軽微修正・継続サポート</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap">
+                <h2>デモ動画</h2>
+                <div class="video-box">
+                    <div>
+                        <strong>ここに動画を埋め込みます</strong><br>
+                        後でYouTube埋め込みや動画URLに差し替えてください。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="form">
+            <div class="wrap">
+                <h2>無料相談フォーム</h2>
+                <div class="card">
+                    <form name="sales-contact" method="POST" data-netlify="true" action="../thanks.html">
+                        <input type="hidden" name="form-name" value="sales-contact">
+
+                        <div>
+                            <label for="company">会社名</label>
+                            <input id="company" name="company" type="text" required>
+                        </div>
+
+                        <div>
+                            <label for="person">ご担当者名</label>
+                            <input id="person" name="person" type="text" required>
+                        </div>
+
+                        <div>
+                            <label for="email">メールアドレス</label>
+                            <input id="email" name="email" type="email" required>
+                        </div>
+
+                        <div>
+                            <label for="phone">電話番号</label>
+                            <input id="phone" name="phone" type="tel">
+                        </div>
+
+                        <div>
+                            <label for="industry">業種</label>
+                            <input id="industry" name="industry" type="text">
+                        </div>
+
+                        <div>
+                            <label for="problems">現在の営業課題</label>
+                            <textarea id="problems" name="problems" required></textarea>
+                        </div>
+
+                        <div>
+                            <label for="monthly">月間の新規営業件数</label>
+                            <input id="monthly" name="monthly" type="number" min="0">
+                        </div>
+
+                        <div>
+                            <label for="message">相談内容</label>
+                            <textarea id="message" name="message"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">無料相談を送信する</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap">
+                <h2>よくある質問</h2>
+                <div class="card faq-item">
+                    <h3>AIに詳しくなくても導入できますか？</h3>
+                    <p>はい。専門知識がなくても進められるように、業務整理から導入まで支援します。</p>
+                </div>
+                <div class="card faq-item">
+                    <h3>どんな会社に向いていますか？</h3>
+                    <p>BtoB営業を行う中小企業、営業担当が少ない会社、社長が営業を兼ねている会社に向いています。</p>
+                </div>
+                <div class="card faq-item">
+                    <h3>いきなり全部自動化できますか？</h3>
+                    <p>最初は優先度の高い工程から進める方が安全です。効果の出やすい部分から導入します。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap cta-box">
+                <h2>まずは営業の作業を減らしてください</h2>
+                <p>営業人材を増やす前に、営業作業を整理し、仕組み化する方が早いです。</p>
+                <a href="#form" class="btn btn-primary">無料相談を申し込む</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="wrap">
+            © AI Profit
+        </div>
+    </footer>
+</body>
+
+</html>
