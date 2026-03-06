@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>送信完了 | AI Profit</title>
+    <meta name="description" content="送信が完了しました。内容確認後、24時間以内にご連絡します。" />
+    <style>
+        :root {
+            --bg: #0f1115;
+            --card: #171a21;
+            --border: #252b36;
+            --text: #f5f7fa;
+            --muted: #9aa4b2;
+            --blue: #2b7fff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .card {
+            width: min(760px, 100%);
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 14px;
+            font-size: clamp(28px, 5vw, 42px);
+        }
+
+        p {
+            margin: 0 0 14px;
+            color: var(--muted);
+        }
+
+        .actions {
+            margin-top: 24px;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-primary {
+            background: var(--blue);
+            border-color: var(--blue);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h1>送信が完了しました</h1>
+        <p>内容を確認後、24時間以内にご連絡します。</p>
+        <p>営業導入の相談、またはキット申込み内容を順番に確認します。</p>
+
+        <div class="actions">
+            <a href="/" class="btn btn-primary">トップに戻る</a>
+            <a href="/sales/" class="btn">営業ページを見る</a>
+            <a href="/kit" class="btn">キットページを見る</a>
+        </div>
+    </div>
+</body>
+
+</html>
