@@ -231,22 +231,43 @@ FAQ回答
                 </div>
 
                 <script>
-                    const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfvGasuglSEXBz4brWFDo6qsT1cMPlzxkvNDF0GK9xmUA-f1g/viewformォームURL";
+                    const FORM_URL = "https://docs.google.com/forms/d/e/あなたのフォームID/viewform";
 
                     function copyOnly() {
-                        const text = document.getElementById('output')?.textContent || '';
-                        navigator.clipboard.writeText(text).then(() => alert('診断結果をコピーしました'));
+                        const text = document.getElementById("output").innerText.trim();
+
+                        if (!text) {
+                            alert("先に診断結果を生成してください。");
+                            return;
+                        }
+
+                        navigator.clipboard.writeText(text)
+                            .then(() => {
+                                alert("診断結果だけコピーしました。");
+                            })
+                            .catch(() => {
+                                alert("コピーに失敗しました。");
+                            });
                     }
 
                     function copyResultAndOpenForm() {
-                        const text = document.getElementById('output')?.textContent || '';
-                        navigator.clipboard.writeText(text).then(() => {
-                            window.open(FORM_URL, '_blank', 'noopener,noreferrer');
-                            alert('診断結果をコピーしました。フォームの「診断結果」欄に貼り付けて送信してください。');
-                        });
+                        const text = document.getElementById("output").innerText.trim();
+
+                        if (!text) {
+                            alert("先に診断結果を生成してください。");
+                            return;
+                        }
+
+                        navigator.clipboard.writeText(text)
+                            .then(() => {
+                                window.open(FORM_URL, "_blank", "noopener,noreferrer");
+                                alert("診断結果をコピーしました。フォームの『診断結果』欄に貼り付けて送信してください。");
+                            })
+                            .catch(() => {
+                                alert("コピーに失敗しました。");
+                            });
                     }
                 </script>
-
             </section>
         </div>
     </div>
