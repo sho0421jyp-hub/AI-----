@@ -203,8 +203,23 @@ FAQ回答
                 <label>納期・希望時期</label>
                 <input id="deadline" placeholder="例：今週中 / 7日以内" />
 
+                <div
+                    style="margin-top: 24px; padding: 16px; background: #1a1e26; border: 1px solid #313949; border-radius: 12px; font-size: 13px;">
+                    <strong style="color: #2b7fff; display: block; margin-bottom: 8px;">【お申込み前の確認】</strong>
+                    <p style="margin: 0 0 10px; color: #9aa4b2;">
+                        本サービスは業務整理・導入支援を目的とするものであり、成果を保証するものではありません。
+                        生成AIへの入力には個人情報を最小限にするようお願いします。
+                        詳細は<a href="./legal/terms.html" target="_blank" style="color: #2b7fff;">利用規約</a>・<a
+                            href="./legal/privacy.html" target="_blank" style="color: #2b7fff;">プライバシーポリシー</a>をご確認ください。
+                    </p>
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="legalAgree" style="width: auto;">
+                        <span>規約および注意事項に同意する</span>
+                    </label>
+                </div>
+
                 <div class="btns">
-                    <button class="primary" onclick="generateDeliverable()">納品物を生成</button>
+                    <button class="primary" id="generateBtn" onclick="generateDeliverable()">納品物を生成</button>
                     <button class="secondary" onclick="copyOutput()">コピー</button>
                     <button class="secondary" onclick="downloadOutput()">Markdown保存</button>
                     <button class="danger" onclick="resetForm()">リセット</button>
@@ -306,6 +321,10 @@ FAQ回答
         }
 
         function generateDeliverable() {
+            if (!document.getElementById('legalAgree').checked) {
+                alert('利用規約および注意事項への同意が必要です。');
+                return;
+            }
             const clientName = document.getElementById('clientName').value.trim() || 'ご依頼者様';
             const industry = document.getElementById('industry').value.trim() || '一般事業者';
             const offer = document.getElementById('offer').value.trim() || 'サービス提供';
@@ -424,6 +443,16 @@ ${makePromptPack(clientName, industry, offer, tools, textWork, top3)}
             document.getElementById('output').textContent = 'ここに納品文が生成されます。';
         }
     </script>
+    <footer
+        style="margin-top: 60px; padding: 30px 20px; border-top: 1px solid #252b36; text-align: center; font-size: 13px; color: #9aa4b2;">
+        <div style="margin-bottom: 12px;">
+            <a href="./legal/tokushoho.html"
+                style="color: #9aa4b2; text-decoration: none; margin: 0 10px;">特定商取引法に基づく表記</a>
+            <a href="./legal/privacy.html" style="color: #9aa4b2; text-decoration: none; margin: 0 10px;">プライバシーポリシー</a>
+            <a href="./legal/terms.html" style="color: #9aa4b2; text-decoration: none; margin: 0 10px;">利用規約</a>
+        </div>
+        © 2024 AI Profit / 齋藤 祥
+    </footer>
 </body>
 
 </html>
